@@ -1,0 +1,22 @@
+{
+  "name": "test-ws-pingPong",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "listener": "node ws_client_listener.js",
+    "send_audio": "node send_audio.js",
+    "send_text_message": "node send_text_message.js",
+    "lint": "npx eslint . --fix"
+  },
+  "dependencies": {
+    "buffer": "5.6.0",
+    "uuid": "^8.3.2",
+    "ws": "^8.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0"
+  }
+}
