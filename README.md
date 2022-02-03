@@ -1,6 +1,6 @@
 # zello-ws-api-client
 
-Project to test zello ws api
+Project to test [zello ws api](https://github.com/zelloptt/zello-channel-api)
 
 ## Prerequisite 
 1. Install dependencies: `npm i`
