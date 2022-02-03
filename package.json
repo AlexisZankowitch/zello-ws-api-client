@@ -1,5 +1,5 @@
 {
-  "name": "test-ws-pingPong",
+  "name": "zello-ws-api-client",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
