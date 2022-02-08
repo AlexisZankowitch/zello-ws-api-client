@@ -1,5 +1,5 @@
 const WebSocket = require( "ws" );
-const config = require( "./config.json" );
+const config = require( "./config-zwork.json" );
 
 const wss = new WebSocket( config.wss );
 
@@ -55,7 +55,7 @@ wss.on( "error", ( err ) => {
 wss.on( "message", ( data, isBinary ) => {
     if ( isBinary ) {
         const binary = handleBinaryMessage( data );
-        console.log( "🚀 ~ DATA isBinary", binary );
+        // console.log( "🚀 ~ DATA isBinary", binary );
         return;
     }
     console.log( " 💌  --- received: %s", data );
@@ -68,4 +68,3 @@ wss.on( "ping", () => {
 wss.on( "pong", () => {
     console.log( " 🏓  --- Received PONG from Server" );
 } );
-

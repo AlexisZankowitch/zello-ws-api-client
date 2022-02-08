@@ -31,18 +31,20 @@ function zelloAuthorize( ws, opusStream, username, password, channel, onComplete
     const authTimeoutMs = 2000;
     const authTimeout = setTimeout( onCompleteCb, authTimeoutMs, false );
     ws.onmessage = function( event ) {
+        // console.log( "🚀 ~ event", event );
         try {
             const json = JSON.parse( event.data );
             isAuthorized = true;
-            isChannelAvailable = true;
+            // isChannelAvailable = true;
             // I don't send the token so I won't get a refresh token
 
             // console.log("🚀 ~ json", json)
             // if (json.refresh_token) {
             //     isAuthorized = true;
-            // } else if (json.command === "on_channel_status" && json.status === "online") {
-            //     isChannelAvailable = true;
-            // }
+            // } else 
+            if ( json.command === "on_channel_status" && json.status === "online" ) {
+                isChannelAvailable = true;
+            }
         } catch ( e ) {
             // Not a JSON - ignore the message
             return;
@@ -71,7 +73,7 @@ function zelloStartStream( ws, opusStream, onCompleteCb ) {
         "type"            : "audio",
         "codec"           : "opus",
         "codec_header"    : codecHeader,
-        "channel"         : "Everyone",
+        "channel"         : config.channels[0],
         "packet_duration" : opusStream.packetDurationMs,
     } ) );
 
@@ -80,6 +82,7 @@ function zelloStartStream( ws, opusStream, onCompleteCb ) {
     ws.onmessage = function( event ) {
         try {
             const json = JSON.parse( event.data );
+            console.log( "🚀 ~ json", json );
             if ( json.success && json.stream_id ) {
                 clearTimeout( startTimeout );
                 return onCompleteCb( json.stream_id );
